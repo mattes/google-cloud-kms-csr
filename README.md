@@ -1,6 +1,6 @@
 # CSR with Google Cloud KMS
 
-Quick utility tool that creates a CSR cert and signs it with a private key coming from Google Cloud KMS or HMS.
+Quick utility tool that creates a CSR cert and signs it with a private key coming from Google Cloud KMS or HSM.
 The private key never leaves Google, everyone is happy. The CSR can then be used to get cert from CA.
 
 I would've done it with `openssl`, but there is no Google Cloud KMS engine available. (Sept. 2018)
