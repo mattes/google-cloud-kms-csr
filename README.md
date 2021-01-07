@@ -8,8 +8,6 @@ I would've done it with `openssl`, but there is no Google Cloud KMS engine avail
 
 ## Usage
 
-You need to make sure you are using an Asymmetric KMS key
-
 ```
 go build -o csr
 ./csr -key <key-resource-id> -out my.csr --common-name MyOrg
@@ -25,6 +23,8 @@ Key Resource Id Version has the following format:
 ```
 projects/xxx/locations/xxx/keyRings/xxx/cryptoKeys/xxx/cryptoKeyVersions/xxx
 ```
+
+Make sure to use an asymmetric key.
 
 
 You can verify `my.csr` with:
