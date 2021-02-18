@@ -7,24 +7,37 @@ I would've done it with `openssl`, but there is no Google Cloud KMS engine avail
 
 
 ## Usage
-
+Build the GO project
 ```
+go mod init https://github.com/mattes/google-cloud-kms-csr
+go mod tidy
 go build -o csr
-./csr -key <key-resource-id> -out my.csr --common-name MyOrg
 ```
-
 Get the key-resource-id by running the following command:
 ```
 gcloud kms keys versions list  --key <keyname> --keyring <keyring-name> --location=<region>
 ```
 
 Key Resource Id Version has the following format:
-
 ```
 projects/xxx/locations/xxx/keyRings/xxx/cryptoKeys/xxx/cryptoKeyVersions/xxx
 ```
 
-Make sure to use an asymmetric key.
+Generate the CSR
+```
+./csr -key <key-resource-id> -out my.csr --common-name MyOrg
+./csr -key <key-resource-id> \
+  -out my.csr \
+  --common-name="*.example.com" \
+  --org="Example Ltd" \
+  --org-unit=Management\
+  --country=US\
+  --province="New York"\
+  --locality="New York"\
+  --email=management@example.com
+```
+
+Make sure to use an asymmetric key. The GO script currently hard codes the hasing algorithm used for your HSM key. If GCP returns an error modify the source code appropriately, build and re-run.
 
 
 You can verify `my.csr` with:
