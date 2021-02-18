@@ -28,13 +28,13 @@ Generate the CSR
 ./csr -key <key-resource-id> -out my.csr --common-name MyOrg
 ./csr -key <key-resource-id> \
   -out my.csr \
-  --common-name *.example.com \
-  --org Example Ltd \
-  --org-unit Management\
-  --country US\
-  --province New York\
-  --locality New York\
-  --email management@example.com
+  --common-name="*.example.com" \
+  --org="Example Ltd" \
+  --org-unit=Management\
+  --country=US\
+  --province="New York"\
+  --locality="New York"\
+  --email=management@example.com
 ```
 
 Make sure to use an asymmetric key. The GO script currently hard codes the hasing algorithm used for your HSM key. If GCP returns an error modify the source code appropriately, build and re-run.
